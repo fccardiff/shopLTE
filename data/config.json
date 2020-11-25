@@ -1,0 +1,13 @@
+{
+	"shopify": {
+		"shopName": "Cool Fun Store",
+		"apiKey": "YOUR_SHOPIFY_KEY",
+		"password": "YOUR_SHOPIFY_PASSWORD"
+	},
+	"database": {
+		"mongoURL": "YOUR_MONGO_CONNECT_URL",
+		"mongoUser": "YOUR_MONGO_CONNECT_USER",
+		"mongoPass": "YOUR_MONGO_CONNECT_PASS",
+		"enabled": true
+	}
+}
