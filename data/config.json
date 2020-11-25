@@ -9,6 +9,8 @@
 		"mongoURL": "YOUR_MONGO_CONNECT_URL",
 		"mongoUser": "YOUR_MONGO_CONNECT_USER",
 		"mongoPass": "YOUR_MONGO_CONNECT_PASS",
+		"databaseName": "shopifyStore",
+		"databaseCollection": "orders",
 		"enabled": true
 	},
 	"network": {
