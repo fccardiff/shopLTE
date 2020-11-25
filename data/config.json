@@ -10,5 +10,11 @@
 		"mongoUser": "YOUR_MONGO_CONNECT_USER",
 		"mongoPass": "YOUR_MONGO_CONNECT_PASS",
 		"enabled": true
+	},
+	"network": {
+		"httpsEnabled": false,
+		"port": 3000,
+		"key": "/path/to/your/key",
+		"cert": "/path/to/your/cert"
 	}
 }
