@@ -14,13 +14,13 @@ To install, you'll need 3 things:
 If you would like to poll other shops, awesome! The setup for that is fairly simple as well.
 
 In the config.json file, find the array "shops" in the "shopify" section. Then, simply append the following for every shop you'd like to poll (with API keys for each):
-
+```
 {
 	"shopName": "YOUR_STORE_NAME",
 	"apiKey": "YOUR_SHOPIFY_KEY",
 	"password": "YOUR_SHOPIFY_PASSWORD"
 }
-
+```
 # Additional Features
 
 This project is a hobby project and as such I'm not taking feature requests for the open source platform.
