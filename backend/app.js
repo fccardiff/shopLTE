@@ -33,14 +33,19 @@ if (!Config.shopify.enabled || !Config.database.enabled) {
 	if (Config.network.httpsEnabled) {
 		https.createServer({key: Config.network.key, cert: Config.network.cert}, app).listen(Config.network.port);
 	} else {
-		http.createServer().listen(Config.network.port);
+		http.createServer(app).listen(Config.network.port);
 	}
-	const shopify = new Shopify({
-		shopName: Config.shopify.shopName,
-		apiKey: Config.shopify.apiKey,
-		password: Config.shopify.password
-	});
-	const ShopifyHandlers = require('./shopify.js')(shopify);
+	if (Config.shopify.shops) {
+		for (var i = 0; i < Config.shopify.shops.length; i++) {
+			var indShop = new Shopify({
+				shopName: Config.shopify.otherShops[i]['shopName'],
+				apiKey: Config.shopify.otherShops[i]['apiKey'],
+				password: Config.shopify.otherShops[i]['password']
+			});
+			var ShopifyHandler = require('./shopify.js')(indShop);
+			ShopifyHandlers.push(ShopifyHandler);
+		}
+	}
 	const MongoHandlers = require('./mongo.js');
-	
+
 }
