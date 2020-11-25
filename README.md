@@ -20,9 +20,12 @@ In the config.json file, find the array "shops" in the "shopify" section. Then, 
 {
 	"shopName": "YOUR_STORE_NAME",
 	"apiKey": "YOUR_SHOPIFY_KEY",
-	"password": "YOUR_SHOPIFY_PASSWORD"
+	"password": "YOUR_SHOPIFY_PASSWORD",
+	"tag": "Store1"
 }
 ```
+Note: The "tag" field is optional. With it, you can store tags based on which store generated the order - helpful for multi-store setups and database queries.
+
 # Additional Features
 
 This project is a hobby project and as such I'm not taking feature requests for the open source platform.

@@ -100,6 +100,7 @@
     "crypto": "*",
     "uuid": "*",
     "moment": "*",
-    "mongodb": "*"
+    "mongodb": "*",
+    "assert": "*"
   }
 }
