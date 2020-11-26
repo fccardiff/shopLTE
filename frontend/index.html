@@ -33,6 +33,11 @@
       // Poll server to get data
       $.get('/totals', function(done) {
         if (done.orders || done.orders == 0) {
+          if (done.orders != $('#orders').text() && ($('#soundEnabled').val() == true || $('#soundEnabled').val() == 'true')) {
+            var audio = document.getElementsByTagName("audio")[0];
+            audio.volume = 0.1;
+            audio.play();
+          }
           $('#orders').text(done.orders);
           $('#units').text(done.units);
           $('#revenue').text(done.total);
@@ -335,5 +340,11 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- toastr.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<input type="hidden" id="soundEnabled" value="{{soundEnabled}}">
+{{#soundEnabled}}
+  <audio>
+    <source src="{{soundURL}}">
+  </audio>
+{{/soundEnabled}}
 </body>
 </html>

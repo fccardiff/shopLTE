@@ -18,5 +18,9 @@
 		"port": 3000,
 		"key": "/path/to/your/key",
 		"cert": "/path/to/your/cert"
+	},
+	"notifiers": {
+		"soundURL": "",
+		"soundEnabled": false
 	}
 }

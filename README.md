@@ -28,6 +28,18 @@ Note: The "tag" field is optional. With it, you can store tags based on which st
 
 # Additional Features
 
+## Notifiers
+
+You can enable notifiers by editing the config.
+
+### Sound
+
+A sound can be played whenever your orders update. Similar to a sales notification in a mobile app, you can select which sound you'd like. Personally I use a cash register sound.
+
+To enable this, simply set soundEnabled to true in the notifiers section, and set soundURL to a publicly accessible media URL.
+
+# Notes
+
 This project is a hobby project and as such I'm not taking feature requests for the open source platform.
 
 If, however, you're interested in custom additions, feel free to contact me at finn [at] fccardiff.com.

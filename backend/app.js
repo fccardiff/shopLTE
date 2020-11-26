@@ -105,7 +105,7 @@ if (!Config.shopify.enabled || !Config.database.enabled) {
 		}
 
 		app.get('/', function(req, res) {
-			res.render('index.html', {units: formatBigNumbers(CURR_UNITS), orders: formatBigNumbers(CURR_ORDERS), total: formatBigTotal(CURR_TOTAL), sessions: formatBigNumbers(TOTAL_SESSIONS), bounces: formatBigNumbers(TOTAL_BOUNCED), conversion: AVG_CONV});
+			res.render('index.html', {soundEnabled: Config.notifiers.soundEnabled, soundURL: Config.notifiers.soundURL, units: formatBigNumbers(CURR_UNITS), orders: formatBigNumbers(CURR_ORDERS), total: formatBigTotal(CURR_TOTAL), sessions: formatBigNumbers(TOTAL_SESSIONS), bounces: formatBigNumbers(TOTAL_BOUNCED), conversion: AVG_CONV});
 		});
 
 		app.get('/totals', function(req, res) {
