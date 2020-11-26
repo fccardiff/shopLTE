@@ -11,10 +11,12 @@ var session = require('express-session');
 var crypto = require('crypto');
 const { v4: uuidv4 } = require('uuid');
 var moment = require('moment');
+var Handlebars = require('hbs');
 const Config = require('../data/config.json');
 var MongoClient = require('mongodb').MongoClient,
     assert = require('assert');
 var app = express();
+var Shopify = require('shopify-api-node');
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
     extended: true,
@@ -27,6 +29,7 @@ app.set('view engine', 'mustache');
 app.engine('html', Handlebars.__express);
 app.engine('mustache', Handlebars.__express);
 app.set('views', '../frontend');
+app.use(express.static('../frontend'));
 
 var CURR_UNITS = 0;
 var CURR_ORDERS = 0;
@@ -48,6 +51,7 @@ if (!Config.shopify.enabled || !Config.database.enabled) {
 	MongoClient.connect(Config.database.mongoURL, function(err, db) {
 		if (err) console.error(err);
 		db = db.db(Config.database.databaseName);
+		var ShopifyHandlers = [];
 		const ORDERS = db.collection(Config.database.databaseCollection);
 		const Routes = require('./routes.js')(app);
 		if (Config.shopify.shops) {
@@ -67,9 +71,10 @@ if (!Config.shopify.enabled || !Config.database.enabled) {
 			var total = 0;
 			var units = 0;
 			var sessions = 0;
+			var orders = 0;
 			var bounces = 0;
 			for (var i = 0; i < ShopifyHandlers.length; i++) {
-				var totalData = ShopifyHandlers[i].getTotal();
+				var totalData = ShopifyHandlers[i].getTotals();
 				total += totalData['revenue'];
 				units += totalData['units'];
 				orders += totalData['orders'];
@@ -77,7 +82,8 @@ if (!Config.shopify.enabled || !Config.database.enabled) {
 				bounces += totalData['bounces'];
 			}
 			CURR_TOTAL = total;
-			CURR_ORDERS = units;
+			CURR_ORDERS = orders;
+			CURR_UNITS = units;
 			TOTAL_SESSIONS = sessions;
 			TOTAL_BOUNCED = bounces;
 			AVG_CONV = (units / TOTAL_SESSIONS);
@@ -98,10 +104,12 @@ if (!Config.shopify.enabled || !Config.database.enabled) {
 					val = val + 'K';
 				}
 			}
+			return val;
 		}
 
 		function formatBigTotal(val) {
 			val = '$' + formatBigNumbers(val);
+			return val;
 		}
 
 		app.get('/', function(req, res) {

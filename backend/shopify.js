@@ -36,14 +36,14 @@ module.exports = function(shopify, apiKey, shopURL, password, tag, collection) {
 		})
 	}
 
-	module.getTotals = function(done) {
+	module.getTotals = function() {
 		// return total dollar cost of all orders, total units, sessions, bounces, conv rate
-		done({revenue: TOTAL_REVENUE, units: TOTAL_UNITS, orders: TOTAL_ORDERS, sessions: TOTAL_SESSIONS, bounces: TOTAL_BOUNCES});
+		return {revenue: TOTAL_REVENUE, units: TOTAL_UNITS, orders: TOTAL_ORDERS, sessions: TOTAL_SESSIONS, bounces: TOTAL_BOUNCES};
 	}
 
 	module.pollOrders = function() {
 		// poll for new shopify orders
-		shopify.orders.list({created_at_min: moment().startOf('day').toISOString()}).then(function(orders) {
+		shopify.order.list({created_at_min: moment().startOf('day').toISOString()}).then(function(orders) {
 			for (var order in orders) {
 				if (CURRENT_IDS.indexOf(orders[order]['id']) < 0) {
 					CURRENT_IDS.push(orders[order]['id']);

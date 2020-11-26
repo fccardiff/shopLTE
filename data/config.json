@@ -20,7 +20,7 @@
 		"cert": "/path/to/your/cert"
 	},
 	"notifiers": {
-		"soundURL": "",
-		"soundEnabled": false
+		"soundEnabled": false,
+		"soundURL": ""
 	}
 }

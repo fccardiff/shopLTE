@@ -101,6 +101,7 @@
     "uuid": "*",
     "moment": "*",
     "mongodb": "*",
-    "assert": "*"
+    "assert": "*",
+    "hbs": "*"
   }
 }
