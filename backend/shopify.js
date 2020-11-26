@@ -10,6 +10,7 @@ module.exports = function(shopify, apiKey, shopURL, password, tag, collection) {
 	var TOTAL_ORDERS = 0;
 	var TOTAL_UNITS = 0;
 	var TOTAL_BOUNCES = 0;
+
 	module.makeAdminRequest = function(url, method, done) {
 		// Override shopify-api-node for custom requests
 		request({
@@ -61,12 +62,13 @@ module.exports = function(shopify, apiKey, shopURL, password, tag, collection) {
 
 	module.pollTraffic = function() {
 		// poll for updated store traffic
-		shopify.graphql('SHOW total_sessions FROM visits SINCE -1d').then(function(err, customers) {
+		/*shopify.graphql('SHOW total_sessions FROM visits SINCE -1d').then(function(err, customers) {
 			if (err) console.error(err);
 			console.log(JSON.stringify(customers))
 			console.log('[Traffic poll for ' + shopURL + ' complete.]');
 			// add to sessions, bounces
-		});
+			// this feature requires Shopify Plus/Advanced and is therefore temporarily disabled
+		});*/
 	}
 
 	module.storeOrder = function(order) {

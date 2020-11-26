@@ -34,9 +34,8 @@
       $.get('/totals', function(done) {
         if (done.orders || done.orders == 0) {
           $('#orders').text(done.orders);
-          $('#bounce').text(done.bounces);
-          $('#pageViews').text(done.sessions);
-          $('#conversionRate').text(done.conversion);
+          $('#units').text(done.units);
+          $('#revenue').text(done.total);
         } else {
           toastr.error('Connection error while polling for data.');
         }
@@ -147,7 +146,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
@@ -161,13 +160,13 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><span id="bounce">0</span><sup style="font-size: 20px">%</sup></h3>
+                <h3><span id="units">0</span><sup style="font-size: 20px">%</sup></h3>
 
-                <p>Bounce Rate</p>
+                <p>Units</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -175,30 +174,16 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3 id="pageViews">0</h3>
+                <h3 id="revenue">0</h3>
 
-                <p>Page Views</p>
+                <p>Revenue</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
-              </div>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3><span id="conversionRate">0</span>%</h3>
-
-                <p>Conversion Rate</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
               </div>
             </div>
           </div>
